@@ -30,13 +30,14 @@
 		<beans:property name="order" value="1"/>
 	</beans:bean>
 	
+		
+	
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<beans:property name="definitions">
 			<beans:list>
 				<beans:value>/WEB-INF/tiles/tiles.xml</beans:value>
 			</beans:list>
-		</beans:property>
-		
+		</beans:property>		
 	</beans:bean>
 	
 	
