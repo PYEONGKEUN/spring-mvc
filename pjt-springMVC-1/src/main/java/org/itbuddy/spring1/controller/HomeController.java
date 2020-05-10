@@ -1,4 +1,4 @@
-package org.itbuddy.spring1;
+package org.itbuddy.spring1.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
