@@ -10,8 +10,11 @@
 	</definition>
 	<definition name="home" extends="main-template">
 		<put-attribute name="title" value="Home"/>
-		<put-attribute name="content" value="/WEB-INF/views/home.jsp"/>
-		
+		<put-attribute name="content" value="/WEB-INF/views/home.jsp"/>		
+	</definition>
+	<definition name="codedetail/*" extends="main-template">
+		<put-attribute name="title" value="CodeDetail"/>
+		<put-attribute name="content" value="/WEB-INF/views/codedetail/{1}.jsp"/>		
 	</definition>
 
 </tiles-definitions>

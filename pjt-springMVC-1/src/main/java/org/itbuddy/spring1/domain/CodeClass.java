@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.sql.Date;
 
 
-public class CodeClassController implements Serializable{
+public class CodeClass implements Serializable {
 
-	private static final long serialVersionUID=6621378083749101963L;
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1189882417149390169L;
 	private String classCode;
 	private String className;
 	private String useYn;
