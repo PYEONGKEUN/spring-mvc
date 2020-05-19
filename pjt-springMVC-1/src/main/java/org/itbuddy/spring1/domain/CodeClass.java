@@ -11,6 +11,8 @@ public class CodeClass implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1189882417149390169L;
+	
+	
 	private String classCode;
 	private String className;
 	private String useYn;

@@ -16,7 +16,7 @@ public class CodeDetail implements Serializable{
 	private static final long serialVersionUID = 1098166748069841168L;
 	
 	private String classCode;
-	private String codeVlaue;
+	private String codeValue;
 	private String codeName;
 	private int sortSeq;
 	private String useYn;
@@ -29,11 +29,11 @@ public class CodeDetail implements Serializable{
 	public void setClassCode(String classCode) {
 		this.classCode = classCode;
 	}
-	public String getCodeVlaue() {
-		return codeVlaue;
+	public String getCodeValue() {
+		return codeValue;
 	}
-	public void setCodeVlaue(String codeVlaue) {
-		this.codeVlaue = codeVlaue;
+	public void setCodeValue(String codeValue) {
+		this.codeValue = codeValue;
 	}
 	public String getCodeName() {
 		return codeName;
@@ -68,7 +68,7 @@ public class CodeDetail implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "CodeDetail [classCode=" + classCode + ", codeVlaue=" + codeVlaue + ", codeName=" + codeName
+		return "CodeDetail [classCode=" + classCode + ", codeValue=" + codeValue + ", codeName=" + codeName
 				+ ", sortSeq=" + sortSeq + ", useYn=" + useYn + ", regDate=" + regDate + ", upDate=" + upDate + "]";
 	}
 	
