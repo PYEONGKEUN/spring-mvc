@@ -66,6 +66,7 @@ public class MemberServiceImpl implements MemberService {
 			mapper.createAuth(memberAuth);
 		}
 	}
+	
 	@Transactional
 	@Override
 	public void remove(int userNo) throws Exception {
@@ -73,10 +74,12 @@ public class MemberServiceImpl implements MemberService {
 		mapper.delete(userNo);
 		
 	}
+	
 	@Override
 	public List<Member> list() throws Exception {
 		return mapper.list();
 	}
+	
 	@Override
 	public int getCoin(int userNo) throws Exception {
 		Member member = mapper.read(userNo);
@@ -84,5 +87,31 @@ public class MemberServiceImpl implements MemberService {
 		return member.getCoin();
 		
 	}
+
+	@Override
+	public int countAll() throws Exception {
+		
+		return mapper.countAll();
+	}
+
+	//초기 어드민 계정 생성
+	
+	@Transactional
+	@Override
+	public void setupAdmin(Member member) throws Exception {
+		mapper.create(member);
+		
+		MemberAuth memberAuth = new MemberAuth();
+		
+		memberAuth.setUserNo(member.getUserNo());
+		memberAuth.setAuth("ROLE_ADMIN");
+		
+		mapper.createAuth(memberAuth);		
+	}
+	
+	
+	
+	
+	
 
 }

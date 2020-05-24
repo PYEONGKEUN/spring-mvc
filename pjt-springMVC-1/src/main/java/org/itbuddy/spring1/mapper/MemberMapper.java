@@ -6,13 +6,16 @@ import org.itbuddy.spring1.domain.Member;
 import org.itbuddy.spring1.domain.MemberAuth;
 
 public interface MemberMapper {
-	Member readByUserId(String userID) throws Exception;
-	void create(Member member) throws Exception;
-	Member read(int userNo) throws Exception;
-	void update(Member member) throws Exception;
-	void delete(int userNo) throws Exception;
-	List<Member> list() throws Exception;
-	void createAuth(MemberAuth memberAuth) throws Exception;
-	void deleteAuth(int userNo) throws Exception;
+	public Member readByUserId(String userID) throws Exception;
+	public void create(Member member) throws Exception;
+	public Member read(int userNo) throws Exception;
+	public void update(Member member) throws Exception;
+	public void delete(int userNo) throws Exception;
+	public List<Member> list() throws Exception;
+	public void createAuth(MemberAuth memberAuth) throws Exception;
+	public void deleteAuth(int userNo) throws Exception;
+	
+	public int countAll() throws Exception;
 	
 }
+  

@@ -3,8 +3,10 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -17,6 +19,9 @@
 			</list>
 		</property>
 	</bean>
+	
+	<!-- service 패키지를 컴포넌트 스캔 대상으로 한다. -->
+	<context:component-scan base-package="org.itbuddy.spring1.service"></context:component-scan>
 	
 	<!--  데이터 소스를 정의 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
@@ -33,7 +38,8 @@
 	<!-- SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:/mybatis-config.xml"/>		
+		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		<!--  mapper xml 위치 지정 -->	
 		<property name="mapperLocations" value="classpath:/mapper/*.xml"/>
 	</bean>
 	
@@ -42,8 +48,9 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<!-- mapper 인터페이스가 위치한 패키지 지정-->
 	<mybatis-spring:scan base-package="org.itbuddy.spring1.mapper"/>
-	
+		
 	<!-- 트랜젝션 관리자의 빈을 정의한다. -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>

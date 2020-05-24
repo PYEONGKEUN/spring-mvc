@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.itbuddy.spring1.mapper.CodeClassMapper">
 
-  <insert id="craete">
+  <insert id="create">
 	INSERT INSERT INTO code_class
 	(
 		class_code,
@@ -14,7 +14,7 @@
 	)
   </insert>
   
-  <select id="select" resultType="CodeClass">
+  <select id="read" resultType="CodeClass">
 	SELECT 
 		class_code,
 		class_name,

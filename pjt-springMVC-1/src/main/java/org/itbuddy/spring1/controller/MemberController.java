@@ -34,8 +34,7 @@ public class MemberController {
 	public void registerForm(Member member, Model model) throws Exception{
 		String classCode = "A01";
 		List<CodeLabelValue> jobList = codeService.getCodeList(classCode);
-		model.addAttribute("jobList", jobList);
-		
+		model.addAttribute("jobList", jobList);		
 	}
 	
 	@PostMapping(value = "/register")
@@ -108,4 +107,36 @@ public class MemberController {
 		
 		return "redirect:/user/list";
 	}	
+	
+	
+	//ADMIN 권한을 가진 최초 관리자를 생성해야 한다.
+	
+	@GetMapping(value = "/setup")
+	public String setupAdminForm(Member member, Model model) throws Exception{
+		if(memberService.countAll() == 0) {
+			return "user/setup";
+		}
+		return "user/setupFailure";
+	}
+	
+	@PostMapping(value = "/setup")
+	public String setupAdmin(Member member, RedirectAttributes rttr) throws Exception{
+		if(memberService.countAll() == 0) {
+			
+			String inputPassword = member.getUserPw();
+			member.setUserPw(passwordEncoder.encode(inputPassword));
+			
+			member.setJob("00");
+			
+			memberService.setupAdmin(member);
+			rttr.addFlashAttribute("userName", member.getUserName());
+			
+			return "redirect:/user/registerSuccess";
+		}
+		return "redirect:/user/setupFailure";
+		
+	}
+	
+
+	
 }

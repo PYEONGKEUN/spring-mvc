@@ -32,7 +32,7 @@ public class Member implements Serializable{
 	private boolean enabled;
 	
 	private Date regDate;
-	private Date upDate;
+	private Date updDate;
 	
 	private List<MemberAuth> authList;
 
@@ -100,12 +100,12 @@ public class Member implements Serializable{
 		this.regDate = regDate;
 	}
 
-	public Date getUpDate() {
-		return upDate;
+	public Date getUpdDate() {
+		return updDate;
 	}
 
-	public void setUpDate(Date upDate) {
-		this.upDate = upDate;
+	public void setUpdDate(Date updDate) {
+		this.updDate = updDate;
 	}
 
 	public List<MemberAuth> getAuthList() {

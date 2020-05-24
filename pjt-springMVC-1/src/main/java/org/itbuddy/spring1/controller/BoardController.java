@@ -19,14 +19,18 @@ public class BoardController {
 		logger.info("registerForm");
 		return "success";
 	}
+	
 	@RequestMapping("/modify")
 	public void modifyForm() {
 		logger.info("modifyForm");
 	}
+	
 	@RequestMapping("/list")
 	public void list() {
 		logger.info("list");
-	}	@RequestMapping("/register")
+	}
+	
+	@RequestMapping("/register")
 	public String read(@PathVariable("boardNo") int boardNo) {
 		logger.info("read boardNo : "+ boardNo);
 		return "board/read";

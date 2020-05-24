@@ -7,7 +7,7 @@
 
 <h2><spring:message code="board.header.list" /></h2>
 
-<form:form modelAttribute="pgrq" method="get" action="list${pgrq.toUriStringByPage(1)}">		
+<form:form modelAttribute="pgrq" method="get" action="${pageContext.request.contextPath}/list${pgrq.toUriStringByPage(1)}">		
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
 	
 	<form:input path="keyword" />
@@ -15,7 +15,7 @@
 </form:form>
 
 <sec:authorize access="hasRole('ROLE_MEMBER')">
-	<a href="register"><spring:message code="action.new" /></a>
+	<a href="${pageContext.request.contextPath}/register"><spring:message code="action.new" /></a>
 </sec:authorize>
 
 <table border="1">
@@ -37,7 +37,7 @@
 			<c:forEach items="${list}" var="board">
 				<tr>
 					<td align="center">${board.boardNo}</td>
-					<td align="left"><a href="/board/read${pgrq.toUriString(pgrq.page)}&boardNo=${board.boardNo}"><c:out value="${board.title}" /></a></td>
+					<td align="left"><a href="${pageContext.request.contextPath}/board/read${pgrq.toUriString(pgrq.page)}&boardNo=${board.boardNo}"><c:out value="${board.title}" /></a></td>
 					<td align="right"><c:out value="${board.writer}" /></td>
 					<td align="center"><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${board.regDate}" /></td>
 				</tr>
@@ -48,15 +48,15 @@
 
 <div>
 	<c:if test="${pagination.prev}">
-		<a href="${pagination.startPage - 1}">&laquo;</a>
+		<a href="${pageContext.request.contextPath}/${pagination.startPage - 1}">&laquo;</a>
 	</c:if>
 
 	<c:forEach begin="${pagination.startPage }" end="${pagination.endPage }" var="idx">
-		<a href="/board/list${pagination.makeQuery(idx)}">${idx}</a>
+		<a href="${pageContext.request.contextPath}/board/list${pagination.makeQuery(idx)}">${idx}</a>
 	</c:forEach>
 	
 	<c:if test="${pagination.next && pagination.endPage > 0}">
-		<a href="${pagination.endPage +1}">&raquo;</a>
+		<a href="${pageContext.request.contextPath}/${pagination.endPage +1}">&raquo;</a>
 	</c:if>
 </div>
 
