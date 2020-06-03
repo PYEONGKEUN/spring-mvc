@@ -11,7 +11,7 @@
 	<c:out value="${logout}" />
 </h2>
 
-<form method="post" action="/login">
+<form method="post" action="${pageContext.request.contextPath}/login">
 	<table>
 		<tr>
 			<td>아이디</td>

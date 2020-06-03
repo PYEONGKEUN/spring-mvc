@@ -4,7 +4,7 @@
 
 <h2><spring:message code="auth.header.logout" /></h2>
 
-<form action="/auth/logout" method="post">
+<form action="${pageContext.request.contextPath}/auth/logout" method="post">
 	<sec:csrfInput />
 	<button><spring:message code="action.logout" /></button>
 </form>
