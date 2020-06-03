@@ -22,28 +22,6 @@
 	)
 </insert>
 
-<select id="getMaxSortSeq" resultType="int">
-	SELECT MAX(sort_seq)
-	FROM code_detail
-	WHERE class_code = #{classCode}
-</select>
-
-
-<select id="list" resultType="CodeDetail">
-	SELECT 
-		class_code,
-		code_value, 
-		code_name, 
-		sort_seq, 
-		use_yn,
-		reg_date
-	FROM 
-		code_detail
-	ORDER BY 
-		class_code ASC,
-		sort_seq ASC
-</select>
-
 <select id="read" resultType="CodeDetail">
 	SELECT 
 		class_code, 
@@ -72,7 +50,7 @@
 </select>
 
 <delete id="delete">
-	DELETE FROM
+DELETE FROM
    code_detail
 WHERE
    class_code = #{classCode}
@@ -80,5 +58,25 @@ AND
    code_value = #{codeValue}
 </delete>
 
+<select id="list" resultType="CodeDetail">
+	SELECT 
+		class_code,
+		code_value, 
+		code_name, 
+		sort_seq, 
+		use_yn,
+		reg_date
+	FROM 
+		code_detail
+	ORDER BY 
+		class_code ASC,
+		sort_seq ASC
+</select>
+
+<select id="getMaxSortSeq" resultType="int">
+	SELECT MAX(sort_seq)
+	FROM code_detail
+	WHERE class_code = #{classCode}
+</select>
 
 </mapper>

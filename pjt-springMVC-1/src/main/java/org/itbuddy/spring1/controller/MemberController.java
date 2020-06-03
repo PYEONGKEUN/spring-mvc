@@ -7,6 +7,7 @@ import org.itbuddy.spring1.domain.Member;
 import org.itbuddy.spring1.service.CodeService;
 import org.itbuddy.spring1.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,8 @@ public class MemberController {
 	}
 
 	@GetMapping(value = "/list")
+	//관리자 권한을 가진 사용자만 접근이 가능하다.
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void list(Model model) throws Exception{
 		model.addAttribute("list", memberService.list());
 	}
@@ -80,6 +83,8 @@ public class MemberController {
 	}
 	
 	@PostMapping(value = "/remove")
+	//관리자 권한을 가진 사용자만 접근이 가능하다.
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String remove(int userNo, RedirectAttributes rttr) throws Exception{
 		memberService.remove(userNo);
 		
@@ -109,8 +114,7 @@ public class MemberController {
 	}	
 	
 	
-	//ADMIN 권한을 가진 최초 관리자를 생성해야 한다.
-	
+	//ADMIN 권한을 가진 최초 관리자를 생성해야 한다.	
 	@GetMapping(value = "/setup")
 	public String setupAdminForm(Member member, Model model) throws Exception{
 		if(memberService.countAll() == 0) {

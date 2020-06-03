@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/codedetail")
+//관리자 권한을 가진 사용자만 접근이 가능하다.
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class CodeDetailController {
 
 	@Autowired
