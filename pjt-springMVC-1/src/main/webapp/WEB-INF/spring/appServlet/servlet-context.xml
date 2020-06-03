@@ -39,10 +39,10 @@
 			</beans:list>
 		</beans:property>		
 	</beans:bean>
-	
-	
-	<context:component-scan base-package="org.itbuddy.spring1" />
-	
-	
+	<!-- controller 패키지를 컴포넌트 스캔 대상으로 한다. -->
+	<context:component-scan base-package="org.itbuddy.spring1.controller" />
+	<!-- security 패키지를 컴포넌트 스캔 대상으로 한다. -->
+	<context:component-scan base-package="org.itbuddy.spring1.security" />
+
 	
 </beans:beans>

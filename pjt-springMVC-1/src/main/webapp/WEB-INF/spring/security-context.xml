@@ -6,12 +6,26 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Security Context: defines shared resources visible to all other web components -->
-	<bean id="bcvrytPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="customAccessDenied" class="org.itbuddy.spring1.security.CustomAccessDeniedHandler"/>
+	<bean id="bcrytPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="customUserDetailService" class="org.itbuddy.spring1.security.CustomUserDetailService"/>
+	<bean id="customLoginSuccess" class="org.itbuddy.spring1.security.CustomLoginSuccessHandler"/>
 		
 	<security:http>
-		<security:form-login/>
+	<!-- CustomLoginSuccessHandler를 로그인 성공 처리자로 지정한다. -->
+		<security:form-login login-page="/auth/login" authentication-success-handler-ref="customLoginSuccess"/>
+	<!-- CustomAccessDeniedHandler를 접근 거부 처리자로 ㅈ정한다. -->
+		<security:access-denied-handler ref="customAccessDenied"/>
+		
+	<!-- 데이터소스를 지정하고 테이블을 이용해서 기존 로그인 정보를 기록 -->
+	<!-- 쿠키의 유효시간을 지정한다. -->
+	<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 	</security:http>
 	<security:authentication-manager>
+	<!--  customUserDetailService 빈을 인증 제공자에 지정한다.-->
+		<security:authentication-provider user-service-ref="customUserDetailService">
+		<security:password-encoder ref="bcrytPasswordEncoder"/>			
+		</security:authentication-provider>
 	</security:authentication-manager>
 		
 

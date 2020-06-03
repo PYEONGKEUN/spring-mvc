@@ -6,7 +6,7 @@ import org.itbuddy.spring1.domain.Member;
 import org.itbuddy.spring1.domain.MemberAuth;
 
 public interface MemberMapper {
-	public Member readByUserId(String userID) throws Exception;
+	public Member readByUserId(String userID);
 	public void create(Member member) throws Exception;
 	public Member read(int userNo) throws Exception;
 	public void update(Member member) throws Exception;
