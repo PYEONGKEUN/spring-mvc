@@ -17,8 +17,10 @@ public class Board implements Serializable{
 	private String writer;
 	private Date regDate;
 	
-	
+	/* 삭제 - 검색 기능
 	private PageRequest pageRequest;
+	*/
+	
 	
 	public int getBoardNo() {
 		return boardNo;
@@ -49,6 +51,7 @@ public class Board implements Serializable{
 	}
 
 
+	/*
 	// 페이징 요펑 멤버변수를 사용하여 페이징 정보를 반환한다.
 	public int getPage() {
 		return pageRequest.getPage();
@@ -66,6 +69,7 @@ public class Board implements Serializable{
 	public void setPageRequest(PageRequest pageRequest) {
 		this.pageRequest = pageRequest;
 	}
+	*/
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", title=" + title + ", content=" + content + ", writer=" + writer

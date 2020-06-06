@@ -1,6 +1,10 @@
 package org.itbuddy.spring1.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.itbuddy.spring1.domain.Board;
+import org.itbuddy.spring1.domain.CodeLabelValue;
 import org.itbuddy.spring1.domain.CustomUser;
 import org.itbuddy.spring1.domain.Member;
 import org.itbuddy.spring1.domain.PageRequest;
@@ -43,9 +47,9 @@ public class BoardController {
 		
 		model.addAttribute(board);
 		
-		logger.info("registerForm");
 		return "success";
 	}
+	
 	@PostMapping("/register")
 	//일반 사용자들만 접근가능
 	@PreAuthorize("hasRole('ROLE_MEMBER')")
@@ -63,9 +67,25 @@ public class BoardController {
 		
 		Pagination pagination = new Pagination();
 		pagination.setPageRequest(pageRequest);
-		pagination.setTotalCount(boardService.count());
+		
+		// 페이지 네비게이션 정보에 검색처리된 게시글 건수를 저장한다.
+		pagination.setTotalCount(boardService.count(pageRequest));
 		
 		model.addAttribute("pagination",pagination);
+		
+		//검색유형의 코드명과 코드값을 정의한다.
+		List<CodeLabelValue> searchTypeValueList = new ArrayList<CodeLabelValue>();
+		
+		// 검색에 보여질 
+		searchTypeValueList.add(new CodeLabelValue("n","---"));
+		searchTypeValueList.add(new CodeLabelValue("t","Title"));
+		searchTypeValueList.add(new CodeLabelValue("c","Content"));
+		searchTypeValueList.add(new CodeLabelValue("w","Writer"));
+		searchTypeValueList.add(new CodeLabelValue("tc","Title OR Content"));
+		searchTypeValueList.add(new CodeLabelValue("cw","Content OR Writer"));
+		searchTypeValueList.add(new CodeLabelValue("tcw","Title OR Content OR Writer"));
+		
+		model.addAttribute("searchTypeCodeValueList", searchTypeValueList);
 	}
 	
 	@GetMapping("/read")
@@ -76,7 +96,10 @@ public class BoardController {
 		
 		Board board = boardService.read(boardNo);
 		
+		// 삭제
+		/*
 		board.setPageRequest(pageRequest);
+		*/
 		
 		model.addAttribute(board);
 		
@@ -93,9 +116,14 @@ public class BoardController {
 	@PostMapping("/modify")
 	//일반 사용자들만 접근가능
 	@PreAuthorize("hasRole('ROLE_ADMIN','ROLE_MEMBER')")
-	public String modify(Board board, RedirectAttributes rttr) throws Exception{
+	public String modify(Board board, PageRequest pageRequest, RedirectAttributes rttr) throws Exception{
 		
-		rttr.addFlashAttribute("msg", "SUCCESS");
+		rttr.addAttribute("page",pageRequest.getPage());
+		rttr.addAttribute("sizePerPage",pageRequest.getSizePerPage());
+		rttr.addAttribute("searchType",pageRequest.getSearchType());
+		rttr.addAttribute("keyword",pageRequest.getKeyword());
+		
+		rttr.addAttribute("msg","SUCCESS");
 		
 		return "redirect:/board/list";
 	}

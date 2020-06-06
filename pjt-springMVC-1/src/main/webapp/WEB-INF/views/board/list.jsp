@@ -7,9 +7,10 @@
 
 <h2><spring:message code="board.header.list" /></h2>
 
+<!-- 검색 폼 -->
 <form:form modelAttribute="pgrq" method="get" action="${pageContext.request.contextPath}/list${pgrq.toUriStringByPage(1)}">		
 	<form:select path="searchType" items="${searchTypeCodeValueList}" itemValue="value" itemLabel="label" />
-	
+		
 	<form:input path="keyword" />
 	<button id='searchBtn'><spring:message code="action.search" /></button>
 </form:form>

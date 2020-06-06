@@ -41,8 +41,11 @@ public class BoardServiceImpl implements BoardService{
 		mapper.delete(boardNo);		
 	}
 
+	//검색 처리된리스트의 갯수를 반환
 	@Override
-	public int count() throws Exception {
-		return mapper.count();
+	public int count(PageRequest pageRequest) throws Exception {
+		return mapper.count(pageRequest);
 	}
+	
+	
 }

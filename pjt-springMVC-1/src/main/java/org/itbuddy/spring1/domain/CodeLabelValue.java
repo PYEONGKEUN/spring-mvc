@@ -11,7 +11,14 @@ public class CodeLabelValue implements Serializable{
 
 	private String label;
 	private String value;
+
 	
+	
+	public CodeLabelValue(String value, String label) {
+		super();
+		this.label = label;
+		this.value = value;
+	}
 	public String getLabel() {
 		return label;
 	}

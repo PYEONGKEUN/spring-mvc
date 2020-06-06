@@ -12,5 +12,6 @@ public interface BoardService {
 	public Board read(int boardNo) throws Exception;
 	public void modify(Board board) throws Exception;
 	public void remove(Integer boardNo) throws Exception;
-	public int count() throws Exception;
+	//검색 처리된리스트의 갯수를 반환
+	public int count(PageRequest pageRequest) throws Exception;
 }
